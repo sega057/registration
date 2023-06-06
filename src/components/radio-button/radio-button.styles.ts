@@ -11,6 +11,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledRadio = styled.input`
+	flex-shrink: 0;
 	margin: 0;
 	width: 1.6rem;
 	height: 1.6rem;

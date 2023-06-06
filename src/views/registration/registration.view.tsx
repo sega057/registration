@@ -47,7 +47,13 @@ export const View: React.FC<Props> = ({
 				</StyledFieldWrapper>
 				<StyledFieldWrapper>
 					<Input
-						{...register("email", { required: texts.requiredField })}
+						{...register("email", {
+							required: texts.requiredField,
+							pattern: {
+								value: config.emailPattern,
+								message: texts.emailInvalid,
+							},
+						})}
 						variant={formErrors.email ? "error" : "default"}
 						message={formErrors.email?.message}
 						id="email"
@@ -58,7 +64,11 @@ export const View: React.FC<Props> = ({
 				</StyledFieldWrapper>
 				<StyledFieldWrapper>
 					<Select
-						{...register("age", { required: texts.requiredField, valueAsNumber: true })}
+						{...register("age", {
+							required: texts.requiredField,
+							valueAsNumber: true,
+							validate: (value) => value >= config.minRequiredAge || texts.minAge,
+						})}
 						variant={formErrors.age ? "error" : "default"}
 						options={ageOptions}
 						id="select"
